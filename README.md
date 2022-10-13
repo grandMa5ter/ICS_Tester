@@ -24,7 +24,7 @@ I will write about limitation and this section will grow as some controls cannot
 - Custome import, export
 
 # Contributions
-I have created multiple things during my career in field of Cyber Security within Industrial Control or OT. However, they were always hidden and protected by IP of organisations. This time, I want to create something that it is not public or publicly available and everyone can use it in their work and can contribute to it to make it better.
+I have created multiple things during my career in field of Cyber Security within Industrial Control or OT. However, they were always hidden and protected by IP of organisations. This time, I want to create something that it is public and publicly available, so everyone can use it in their work and can contribute to it to make it better.
 I cannot share the full text of IEC62443-3-3 and 4-2 control set publicly as it is protected by IP. However, the purpose of contribution might be better to be at code level for optimised checking, fancy reporting and/or contribution of checking for other platforms (IoT), OSes (*nix), PLC, IED etc etc...
 
 # Disclaimer: 
