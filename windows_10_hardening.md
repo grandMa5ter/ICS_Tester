@@ -1,4 +1,8 @@
-# Windows 10 Hardening
+# Disclaimer
+
+Butchered version of Hardening Kitty is in this repo. I find it useful for this project and didn't want to just copy the code and use if without referencing and history of it being recorded that I used their code. Now here we go.
+
+## Windows 10 Hardening
 
 The IDs correspond to the finding lists for HardeningKitty [finding_list_0x6d69636b_machine.csv](https://github.com/0x6d69636b/windows_hardening/blob/master/lists/finding_list_0x6d69636b_machine.csv) and [finding_list_0x6d69636b_user.csv](https://github.com/0x6d69636b/windows_hardening/blob/master/lists/finding_list_0x6d69636b_user.csv).
 
