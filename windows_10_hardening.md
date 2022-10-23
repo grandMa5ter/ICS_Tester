@@ -4,7 +4,7 @@ Butchered version of Hardening Kitty is in this repo. I find it useful for this 
 
 ## Windows 10 Hardening
 
-The IDs correspond to the finding lists for HardeningKitty [finding_list_0x6d69636b_machine.csv](https://github.com/0x6d69636b/windows_hardening/blob/master/lists/finding_list_0x6d69636b_machine.csv) and [finding_list_0x6d69636b_user.csv](https://github.com/0x6d69636b/windows_hardening/blob/master/lists/finding_list_0x6d69636b_user.csv).
+The IDs correspond to the finding lists for ICS_Tester [finding_list_0x6d69636b_machine.csv](https://github.com/0x6d69636b/windows_hardening/blob/master/lists/finding_list_0x6d69636b_machine.csv) and [finding_list_0x6d69636b_user.csv](https://github.com/0x6d69636b/windows_hardening/blob/master/lists/finding_list_0x6d69636b_user.csv).
 
 ## Basic Hardening
 
@@ -904,20 +904,20 @@ Add the following rules to _Computer Configuration\Windows Settings\Security Set
 
 ID    | Name                  | Type        | Rule applies to | Protocol | Local ports | IP addresses | Action | Profile 
 ------|--------------------- | ------------| --------------- | -------- | ----------- | ------------ |  ---------- | -----------
-2300 | HardeningKitty-Block-TCP-NetBIOS | Custom Rule | All programs | TCP | 137-139 | Any | Block | All
-2301 | HardeningKitty-Block-TCP-RDP | Custom Rule | All programs | TCP | 3389 | Any | Block | All
-2302 | HardeningKitty-Block-TCP-RPC | Custom Rule | All programs | TCP | 135, 593 | Any | Block | All
-2303 | HardeningKitty-Block-TCP-SMB | Custom Rule | All programs | TCP | 445 | Any | Block | All
-2304 | HardeningKitty-Block-TCP-WinRM | Custom Rule | All programs | TCP | 5985, 5986 | Any | Block | All
-2305 | HardeningKitty-Block-UDP-NetBIOS | Custom Rule | All programs | UDP | 137-139 | Any | Block | All
-2306 | HardeningKitty-Block-UDP-RPC | Custom Rule | All programs | UDP | 135, 593 | Any | Block | All
+2300 | ICS_Tester-Block-TCP-NetBIOS | Custom Rule | All programs | TCP | 137-139 | Any | Block | All
+2301 | ICS_Tester-Block-TCP-RDP | Custom Rule | All programs | TCP | 3389 | Any | Block | All
+2302 | ICS_Tester-Block-TCP-RPC | Custom Rule | All programs | TCP | 135, 593 | Any | Block | All
+2303 | ICS_Tester-Block-TCP-SMB | Custom Rule | All programs | TCP | 445 | Any | Block | All
+2304 | ICS_Tester-Block-TCP-WinRM | Custom Rule | All programs | TCP | 5985, 5986 | Any | Block | All
+2305 | ICS_Tester-Block-UDP-NetBIOS | Custom Rule | All programs | UDP | 137-139 | Any | Block | All
+2306 | ICS_Tester-Block-UDP-RPC | Custom Rule | All programs | UDP | 135, 593 | Any | Block | All
 
 #### Optional
 
 ID    | Name                  | Type        | Rule applies to | Protocol | Local ports | IP addresses | Action | Profile 
 ------|--------------------- | ------------| --------------- | -------- | ----------- | ------------ |  ---------- | -----------
-\- | HardeningKitty-Block-TCP-VMware-HTTPS | Custom Rule | All programs | TCP | 443 | Any | Block | All
-\- | HardeningKitty-Block-TCP-VMware-authd | Custom Rule | All programs | TCP | 902, 912 | Any | Block | All
+\- | ICS_Tester-Block-TCP-VMware-HTTPS | Custom Rule | All programs | TCP | 443 | Any | Block | All
+\- | ICS_Tester-Block-TCP-VMware-authd | Custom Rule | All programs | TCP | 902, 912 | Any | Block | All
 
 ### Outbound Rules
 
@@ -927,19 +927,19 @@ Quote @cryps1s: _While not the most glamorous of defensive strategies, those app
 
 ID    | Name                  | Type        | Rule applies to | Protocol | Local ports | IP addresses | Action | Profile 
 ------|--------------------- | ------------| --------------- | -------- | ----------- | ------------ |  ---------- | -----------
-2307 | HardeningKitty-Block-calc-x64 | Custom Rule | _%SystemRoot%\System32\calc.exe_ | Any | Any | Any | Block | All
-2308 | HardeningKitty-Block-calc-x86 | Custom Rule | _%SystemRoot%\Syswow64\calc.exe_ | Any | Any | Any | Block | All
-2309 | HardeningKitty-Block-certutil-x64 | Custom Rule | _%SystemRoot%\System32\certutil.exe_ | Any | Any | Any | Block | All
-2310 | HardeningKitty-Block-certutil-x86 | Custom Rule | _%SystemRoot%\Syswow64\certutil.exe_ | Any | Any | Any | Block | All
-2311 | HardeningKitty-Block-conhost-x64 | Custom Rule | _%SystemRoot%\System32\conhost.exe_ | Any | Any | Any | Block | All
-2312 | HardeningKitty-Block-conhost-x86 | Custom Rule | _%SystemRoot%\Syswow64\conhost.exe_ | Any | Any | Any | Block | All
-2313 | HardeningKitty--Block-cscript-x64 | Custom Rule | _%SystemRoot%\System32\cscript.exe_ | Any | Any | Any | Block | All
-2314 | HardeningKitty--Block-cscript-x86 | Custom Rule | _%SystemRoot%\Syswow64\cscript.exe_ | Any | Any | Any | Block | All
-2315 | HardeningKitty--Block-mshta-x64 | Custom Rule | _%SystemRoot%\System32\mshta.exe_ | Any | Any | Any | Block | All
-2316 | HardeningKitty--Block-mshta-x86 | Custom Rule | _%SystemRoot%\Syswow64\mshta.exe_ | Any | Any | Any | Block | All
-2317 | HardeningKitty--Block-notepad-x64 | Custom Rule | _%SystemRoot%\System32\notepad.exe_ | Any | Any | Any | Block | All
-2318 | HardeningKitty--Block-notepad-x86 | Custom Rule | _%SystemRoot%\Syswow64\notepad.exe_ | Any | Any | Any | Block | All
-2319 | HardeningKitty--Block-RunScriptHelper-x64 | Custom Rule | _%SystemRoot%\System32\RunScriptHelper.exe_ | Any | Any | Any | Block | All
-2320 | HardeningKitty--Block-RunScriptHelper-x86 | Custom Rule | _%SystemRoot%\Syswow64\RunScriptHelper.exe_ | Any | Any | Any | Block | All
-2321 | HardeningKitty--Block-wscript-x64 | Custom Rule | _%SystemRoot%\System32\wscript.exe_ | Any | Any | Any | Block | All
-2322 | HardeningKitty--Block-wscript-x86 | Custom Rule | _%SystemRoot%\Syswow64\wscript.exe_ | Any | Any | Any | Block | All
+2307 | ICS_Tester-Block-calc-x64 | Custom Rule | _%SystemRoot%\System32\calc.exe_ | Any | Any | Any | Block | All
+2308 | ICS_Tester-Block-calc-x86 | Custom Rule | _%SystemRoot%\Syswow64\calc.exe_ | Any | Any | Any | Block | All
+2309 | ICS_Tester-Block-certutil-x64 | Custom Rule | _%SystemRoot%\System32\certutil.exe_ | Any | Any | Any | Block | All
+2310 | ICS_Tester-Block-certutil-x86 | Custom Rule | _%SystemRoot%\Syswow64\certutil.exe_ | Any | Any | Any | Block | All
+2311 | ICS_Tester-Block-conhost-x64 | Custom Rule | _%SystemRoot%\System32\conhost.exe_ | Any | Any | Any | Block | All
+2312 | ICS_Tester-Block-conhost-x86 | Custom Rule | _%SystemRoot%\Syswow64\conhost.exe_ | Any | Any | Any | Block | All
+2313 | ICS_Tester--Block-cscript-x64 | Custom Rule | _%SystemRoot%\System32\cscript.exe_ | Any | Any | Any | Block | All
+2314 | ICS_Tester--Block-cscript-x86 | Custom Rule | _%SystemRoot%\Syswow64\cscript.exe_ | Any | Any | Any | Block | All
+2315 | ICS_Tester--Block-mshta-x64 | Custom Rule | _%SystemRoot%\System32\mshta.exe_ | Any | Any | Any | Block | All
+2316 | ICS_Tester--Block-mshta-x86 | Custom Rule | _%SystemRoot%\Syswow64\mshta.exe_ | Any | Any | Any | Block | All
+2317 | ICS_Tester--Block-notepad-x64 | Custom Rule | _%SystemRoot%\System32\notepad.exe_ | Any | Any | Any | Block | All
+2318 | ICS_Tester--Block-notepad-x86 | Custom Rule | _%SystemRoot%\Syswow64\notepad.exe_ | Any | Any | Any | Block | All
+2319 | ICS_Tester--Block-RunScriptHelper-x64 | Custom Rule | _%SystemRoot%\System32\RunScriptHelper.exe_ | Any | Any | Any | Block | All
+2320 | ICS_Tester--Block-RunScriptHelper-x86 | Custom Rule | _%SystemRoot%\Syswow64\RunScriptHelper.exe_ | Any | Any | Any | Block | All
+2321 | ICS_Tester--Block-wscript-x64 | Custom Rule | _%SystemRoot%\System32\wscript.exe_ | Any | Any | Any | Block | All
+2322 | ICS_Tester--Block-wscript-x86 | Custom Rule | _%SystemRoot%\Syswow64\wscript.exe_ | Any | Any | Any | Block | All

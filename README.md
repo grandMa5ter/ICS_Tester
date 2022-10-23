@@ -1,41 +1,37 @@
-# HardeningKitty and Windows 10 Hardening
+# ICS_Tester and Windows 10 Hardening
 
 ## Introduction
 
-The project started as a simple hardening list for Windows 10. After some time, HardeningKitty was created to simplify the hardening of Windows. Now, HardeningKitty supports guidelines from Microsoft, CIS Benchmarks, DoD STIG and BSI SiSyPHuS Win10. And of course my own hardening list.
+The project started as a simple hardening list for Windows 10. After some time, ICS_Tester was created to simplify the hardening of Windows. Now, ICS_Tester supports guidelines from Microsoft, CIS Benchmarks, DoD STIG and BSI SiSyPHuS Win10. And of course IEC62443 list of requirements implementation within windows.
 
-This is a hardening checklist that can be used in private and business environments for hardening Windows 10. The checklist can be used for all Windows versions, but in Windows 10 Home the Group Policy Editor is not integrated and the adjustment must be done directly in the registry. For this, there is the _HailMary_ mode from _HardeningKitty_.
+This is a hardening checklist that can be used in private and business environments for hardening Windows 10. The checklist can be used for all Windows versions, but in Windows 10 Home the Group Policy Editor is not integrated and the adjustment must be done directly in the registry. This code altered from HardeningKitty original repository doesn't accommodate that.
 
 The settings should be seen as security and privacy recommendation and should be carefully checked whether they will affect the operation of your infrastructure or impact the usability of key functions. It is important to weigh security against usability.
 
-The project started with the creation of a simple hardening checklist for Windows 10. The focus has shifted to the audit of various well-known frameworks / benchmarks with the development of _HardeningKitty_. Meanwhile, various CIS benchmarks and Microsoft Security Baselines are supported. With the development of the _HailMary_ mode, it will also be possible to apply settings of any hardening checklist on a Windows system.
+The project started with the creation of a simple IEC62443 checklist for Windows 10. The focus has shifted to the audit of various well-known frameworks / benchmarks with the development of _ICS_Tester_. Meanwhile, various CIS benchmarks and Microsoft Security Baselines are supported. 
 
-## HardeningKitty
+## ICS_Tester
 
-_HardeningKitty_ supports hardening of a Windows system. The configuration of the system is retrieved and assessed using a finding list. In addition, the system can be hardened according to predefined values. _HardeningKitty_ reads settings from the registry and uses other modules to read configurations outside the registry.
+_ICS_Tester_ supports hardening of a Windows system. The configuration of the system is retrieved and assessed using a finding list. In addition, the system can be hardened according to predefined values. _ICS_Tester_ reads settings from the registry and uses other modules to read configurations outside the registry.
 
 The script was developed for English systems. It is possible that in other languages the analysis is incorrect. Please create an issue if this occurs.
-
-### Signed Version
-
-The development of _HardeningKitty_ happens in this repository. In the [repository of scip AG](https://github.com/scipag/HardeningKitty) is a stable version of _HardeningKitty_ that has been *signed* with the code signing certificate of _scip AG_. This means that _HardeningKitty_ can also be run on systems that only allow signed scripts.
 
 ### How To Run
 
 Run the script with administrative privileges to access machine settings. For the user settings it is better to execute them with a normal user account. Ideally, the user account is used for daily work.
 
-Download _HardeningKitty_ and copy it to the target system (script and lists). Then HardeningKitty can be imported and executed:
+Download _ICS_Tester_ and copy it to the target system (script and lists). Then ICS_Tester can be imported and executed:
 
 ```powershell
-PS C:\tmp> Import-Module .\HardeningKitty.psm1
-PS C:\tmp> Invoke-HardeningKitty -EmojiSupport
+PS C:\tmp> Import-Module .\ICS_Tester.psm1
+PS C:\tmp> Invoke-ICS_Tester -EmojiSupport
 
 
          =^._.^=
-        _(      )/  HardeningKitty 0.9.0-1662273740
+        _(      )/  ICS_Tester 0.9.0-1662273740
 
 
-[*] 9/4/2022 8:54:12 AM - Starting HardeningKitty
+[*] 9/4/2022 8:54:12 AM - Starting ICS_Tester
 
 
 [*] 9/4/2022 8:54:12 AM - Getting user information
@@ -68,77 +64,55 @@ PS C:\tmp> Invoke-HardeningKitty -EmojiSupport
 
 ...
 
-[*] 9/4/2022 8:54:25 AM - HardeningKitty is done
-[*] 9/4/2022 8:54:25 AM - Your HardeningKitty score is: 4.82. HardeningKitty Statistics: Total checks: 325 - Passed: 213, Low: 33, Medium: 76, High: 3.
+[*] 9/4/2022 8:54:25 AM - ICS_Tester is done
+[*] 9/4/2022 8:54:25 AM - Your ICS_Tester score is: 4.82. ICS_Tester Statistics: Total checks: 325 - Passed: 213, Low: 33, Medium: 76, High: 3.
 ```
-
-### How To Install
-
-First create the directory *HardeningKitty* and for every version a sub directory like *0.9.0* in a path listed in the *PSModulePath* environment variable.
-
-Copy the module *HardeningKitty.psm1*, *HardeningKitty.psd1*, and the *lists* directory to this new directory.
-
-```powershell
-PS C:\tmp> $Version = "0.9.0"
-PS C:\tmp> New-Item -Path $Env:ProgramFiles\WindowsPowerShell\Modules\HardeningKitty\$Version -ItemType Directory
-PS C:\tmp> Copy-Item -Path .\HardeningKitty.psd1,.\HardeningKitty.psm1,.\lists\ -Destination $Env:ProgramFiles\WindowsPowerShell\Modules\HardeningKitty\$Version\ -Recurse
-```
-
-For more information see Microsoft's article [Installing a PowerShell Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/installing-a-powershell-module).
 
 ### Examples
 
 #### Audit
 
-HardeningKitty performs an audit, saves the results in a CSV file and creates a log file. The files are automatically named and receive a timestamp. Using the parameters _ReportFile_ or _LogFile_, it is also possible to assign your own name and path.
+ICS_Tester performs an audit, saves the results in a CSV file and creates a log file. The files are automatically named and receive a timestamp. Using the parameters _ReportFile_ or _LogFile_, it is also possible to assign your own name and path.
 
 The _Filter_ parameter can be used to filter the hardening list. For this purpose the PowerShell ScriptBlock syntax must be used, for example `{ $_.ID -eq 4505 }`. The following elements are useful for filtering: ID, Category, Name, Method, and Severity.
 
 ```powershell
-Invoke-HardeningKitty -Mode Audit -Log -Report
+Invoke-ICS_Tester -Mode Audit -Log -Report
 ```
 
-HardeningKitty can be executed with a specific list defined by the parameter _FileFindingList_. If HardeningKitty is run several times on the same system, it may be useful to hide the machine information. The parameter _SkipMachineInformation_ is used for this purpose.
+ICS_Tester can be executed with a specific list defined by the parameter _FileFindingList_. If ICS_Tester is run several times on the same system, it may be useful to hide the machine information. The parameter _SkipMachineInformation_ is used for this purpose.
 
 ```powershell
-Invoke-HardeningKitty -FileFindingList .\lists\finding_list_0x6d69636b_user.csv -SkipMachineInformation
+Invoke-ICS_Tester -FileFindingList .\lists\finding_list_0x6d69636b_user.csv -SkipMachineInformation
 ```
 
-HardeningKitty uses the default list, and saves the results in a specific file.
+ICS_Tester uses the default list, and saves the results in a specific file.
 
 ```powershell
-Invoke-HardeningKitty -Mode Config -Report -ReportFile C:\tmp\my_hardeningkitty_report.csv
+Invoke-ICS_Tester -Mode Config -Report -ReportFile C:\tmp\my_ICS_Tester_report.csv
 ```
 
-HardeningKitty uses the default list, and checks only tests with the severity Medium.
+ICS_Tester uses the default list, and checks only tests with the severity Medium.
 
 ```powershell
-Invoke-HardeningKitty -Filter { $_.Severity -eq "Medium" }
+Invoke-ICS_Tester -Filter { $_.Severity -eq "Medium" }
 ```
 
 #### Backup
 
-Backups are important. Really important. Therefore, HardeningKitty also has a function to retrieve the current configuration and save it in a form that can be easily restored. The _Backup_ switch specifies that the file is written in form of a finding list and can thus be used for the _HailMary_ mode. The name and path of the backup can be specified with the parameter _BackupFile_.
+Backups are important. Really important. Therefore, ICS_Tester also has a function to retrieve the current configuration and save it in a form that can be easily restored. The _Backup_ switch specifies that the file is written in form of a finding list. The name and path of the backup can be specified with the parameter _BackupFile_.
 
 ```powershell
-Invoke-HardeningKitty -Mode Config -Backup
+Invoke-ICS_Tester -Mode Config -Backup
 ```
 
 Please test this function to see if it really works properly on the target system before making any serious changes. A Schrödinger's backup is dangerous.
 
-#### HailMary
-
-The _HailMary_ method is very powerful. It can be used to deploy a finding list on a system. All findings are set on this system as recommended in the list. With power comes responsibility. Please use this mode only if you know what you are doing. Be sure to have a backup of the system.
-
-```powershell
-Invoke-HardeningKitty -Mode HailMary -Log -Report -FileFindingList .\lists\finding_list_0x6d69636b_machine.csv
-```
-
-### HardeningKitty Score
+### ICS_Tester Score
 
 Each Passed finding gives 4 points, a Low finding gives 2 points, a Medium finding gives 1 point and a High Finding gives 0 points.
 
-The formula for the HardeningKitty Score is _(Points achieved / Maximum points) * 5 + 1_.
+The formula for the ICS_Tester Score is _(Points achieved / Maximum points) * 5 + 1_.
 
 #### Rating
 
@@ -151,13 +125,13 @@ The formula for the HardeningKitty Score is _(Points achieved / Maximum points) 
 | 2 | 🙀 Weak | Insufficient |
 | 1 | 😾 Bogus | Insufficient |
 
-### HardeningKitty Interface
+### ICS_Tester Interface
 
-[ataumo](https://github.com/ataumo) build a web based interface for HardeningKitty. The tool can be used to create your own lists and provides additional information on the hardening settings. The [source code](https://github.com/ataumo/policies_hardening_interface) is under AGPL license and there is a [demo site](https://phi.cryptonit.fr/policies_hardening_interface/).
+[ataumo](https://github.com/ataumo) build a web based interface for ICS_Tester. The tool can be used to create your own lists and provides additional information on the hardening settings. The [source code](https://github.com/ataumo/policies_hardening_interface) is under AGPL license and there is a [demo site](https://phi.cryptonit.fr/policies_hardening_interface/).
 
 ### Last Update
 
-HardeningKitty can be used to audit systems against the following baselines / benchmarks:
+ICS_Tester can be used to audit systems against the following baselines / benchmarks:
 
 | Name | System Version    | Version  |
 | :--- | :---------------- | :------  |
